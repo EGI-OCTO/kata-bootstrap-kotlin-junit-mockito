@@ -1,3 +1,5 @@
+package area
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -10,21 +12,22 @@ import kotlin.math.PI
 @ExtendWith(MockitoExtension::class)
 internal class CylinderVolumeCalculatorTest {
     @Mock
-    lateinit var multiplier: CircleAreaCalculator
-    @InjectMocks lateinit var underTest: CylinderVolumeCalculator
+    private lateinit var multiplier: CircleAreaCalculator
+    @InjectMocks
+    private lateinit var underTest: CylinderVolumeCalculator
 
     @Test
-    fun `should return a volume of PI when cylinder radius is 1 and height is 1`() {
+    fun `should return a volume of 2PI when cylinder radius is 1 and height is 2`() {
         // given
         given(multiplier.calculateCircleArea(1.0)).willReturn(PI)
 
         // when
         val output = underTest.calculateCylinderVolume(
                 radius = 1.0,
-                height = 1.0
+                height = 2.0
         )
 
         // then
-        assertThat(output).isEqualTo(PI)
+        assertThat(output).isEqualTo(2 * PI)
     }
 }
